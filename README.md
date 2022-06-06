@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+## notes
+
+- had to `export NODE_OPTIONS=--openssl-legacy-provider` for my machine to get webpack to compile.
