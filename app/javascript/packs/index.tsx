@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { Slate, Editable, withReact } from 'slate-react'
 import { createEditor, Descendant } from 'slate'
 
-
 const initialValue = [
   {
     type: 'paragraph',
@@ -22,6 +21,6 @@ const App = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const root = ReactDOM.createRoot(document.getElementById("root"))
+  const root = ReactDOM.createRoot(document.getElementById('root'))
   root.render(<App />)
 })

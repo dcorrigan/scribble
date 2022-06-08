@@ -5,7 +5,7 @@
   "author": "Dan Corrigan <df.corrigan@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "fix": "eslint --fix app/"
+    "fix": "eslint --fix app/javascript/packs/**/*.tsx"
   },
   "dependencies": {
     "@babel/preset-react": "^7.17.12",
@@ -24,6 +24,9 @@
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.18.2",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
