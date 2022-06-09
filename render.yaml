@@ -1,0 +1,18 @@
+databases:
+  - name: scribble
+    databaseName: scribble_production
+    user: scribble
+
+services:
+  - type: web
+    name: scribble
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: scribble
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
