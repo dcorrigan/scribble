@@ -77,3 +77,6 @@ yarn-debug.log*
 .yarn-integrity
 
 /config/master.key
+
+# personal
+*.bk
