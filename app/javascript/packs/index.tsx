@@ -1,43 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Slate, Editable, withReact } from 'slate-react'
-import { createEditor, Descendant } from 'slate'
-
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }],
-  },
-]
-
-const Document = () => {
-  const editor = React.useMemo(() => withReact(createEditor()), [])
-
-  return (
-    <Slate editor={editor} value={initialValue as Descendant[]}>
-      <Editable />
-    </Slate>
-  )
-}
-
-const Home = () => {
-  return (
-    <>
-      <h1>Hello. Create a doc.</h1>
-      <Link to="docs">
-        New doc
-      </Link>
-    </>
-  )
-}
-
-// ROUTER code, move later
+import Home from "./pages/Home"
+import Document from "./pages/Document"
 import {
   BrowserRouter,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+} from "@apollo/client";
+
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: "/graphql",
+    headers: {
+      'X-CSRF-Token': document.getElementsByName('csrf-token')[0].content
+    }
+  }),
+  cache: new InMemoryCache()
+});
+
+const App = ({ children }) => (
+  <ApolloProvider client={client}>
+    {children}
+  </ApolloProvider>
+)
 
 const Router = () => (
   <BrowserRouter>
@@ -48,9 +39,12 @@ const Router = () => (
     </Routes>
   </BrowserRouter>
 )
-// END ROUTER
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = ReactDOM.createRoot(document.getElementById('root'))
-  root.render(<Router />)
+  root.render(
+    <App>
+      <Router />
+    </App>
+  )
 })

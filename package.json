@@ -8,12 +8,14 @@
     "fix": "eslint --fix app/javascript/packs/**/*.tsx"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.7",
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
     "@rails/webpacker": "5.4.3",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "graphql": "^16.5.0",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
