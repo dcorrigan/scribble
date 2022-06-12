@@ -1,21 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { gql, useMutation } from '@apollo/client'
-
-const CREATE_DOCUMENT = gql`
-  mutation {
-    createDocument(input: {}) {
-      document {
-        id
-        body
-      }
-      errors
-    }
-  }
-`
+import { useMutation } from '@apollo/client'
+import { CREATE_DOCUMENT } from '../gql'
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [createDocument, { data, loading, error }] = useMutation(CREATE_DOCUMENT)
+  const navigate = useNavigate()
+
+  const [createDocument, { data, loading, error }] = useMutation(
+    CREATE_DOCUMENT, {
+    onCompleted: ({ createDocument }) => {
+      const documentId = createDocument.document.id
+      navigate(`/${documentId}`)
+    }
+  })
 
   const onClick = e => {
     e.preventDefault()

@@ -1,15 +1,18 @@
 import React from 'react'
 import { Slate, Editable, withReact } from 'slate-react'
 import { createEditor, Descendant } from 'slate'
-
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }],
-  },
-]
+import { GET_DOCUMENT } from '../gql'
+import { useParams } from "react-router-dom";
+import { useQuery } from '@apollo/client';
 
 const Document = () => {
+  const { documentId } = useParams()
+  const { loading, error, data } = useQuery(GET_DOCUMENT, {
+    variables: { id: documentId },
+  });
+
+  const initialValue = data?.document.body ?? []
+
   const editor = React.useMemo(() => withReact(createEditor()), [])
 
   return (
