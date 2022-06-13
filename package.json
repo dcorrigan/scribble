@@ -5,7 +5,8 @@
   "author": "Dan Corrigan <df.corrigan@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "fix": "eslint --fix app/javascript/packs/**/*.tsx"
+    "fix": "eslint --fix app/javascript/packs/**/*.tsx",
+    "codegen": "bundle exec rails graphql:schema:dump && yarn graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.6.7",
@@ -29,8 +30,11 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript-operations": "^2.4.2",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
+    "apollo-codegen": "^0.20.2",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
