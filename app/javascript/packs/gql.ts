@@ -21,7 +21,7 @@ mutation {
 `
 
 export const UPDATE_DOCUMENT = gql`
-mutation UpdateDocument($id: ID!, $body: GraphQLJSON!) {
+mutation UpdateDocument($id: ID!, $body: JSON!) {
   updateDocument(input: { id: $id, body: $body }) {
     document {
       id

@@ -13,6 +13,7 @@ import {
   ApolloProvider,
   HttpLink,
 } from "@apollo/client";
+import GraphQLJSON from 'graphql-type-json'
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -21,7 +22,14 @@ const client = new ApolloClient({
       'X-CSRF-Token': document.getElementsByName('csrf-token')[0].content
     }
   }),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  resolvers: {
+    JSON: {
+      __serialize(value) {
+        return GraphQLJSON.parseValue(value);
+      }
+    }
+  }
 });
 
 const App = ({ children }) => (
